@@ -1,4 +1,5 @@
  <template>
+ <!-- <section> 标签定义文档中的节（section、区段）。比如章节、页眉、页脚或文档中的其他部分。  标签是 HTML 5 中的新标签。 -->
     <section class="cart_module">
         <section v-if="!foods.specifications.length" class="cart_button">
             <transition name="showReduce">

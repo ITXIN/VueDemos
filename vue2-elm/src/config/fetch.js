@@ -51,23 +51,25 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 		}
 
 	} else {
+		// “承诺将来会执行”的对象在JavaScript中称为Promise对象。
 		return new Promise((resolve, reject) => {
 			let requestObj;
 			if (window.XMLHttpRequest) {
 				requestObj = new XMLHttpRequest();
 			} else {
-				requestObj = new ActiveXObject;
+				requestObj = new ActiveXObject;//适配低版本IE
 			}
 
 			let sendData = '';
 			if (type == 'POST') {
 				sendData = JSON.stringify(data);
 			}
-
+			
+			//发送请求
 			requestObj.open(type, url, true);
 			requestObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			requestObj.send(sendData);
-
+			//监听状态，通过readyState === 4判断请求是否完成，如果已完成，再根据status === 200判断是否是一个成功的响应。
 			requestObj.onreadystatechange = () => {
 				if (requestObj.readyState == 4) {
 					if (requestObj.status == 200) {

@@ -55,7 +55,7 @@ export const loadMore = (element, callback) => {
     let oldScrollTop;
 
     document.body.addEventListener('scroll',() => {
-       loadMore();
+       loadMore();//指下面定义的
     }, false)
     //运动开始时获取元素 高度 和 offseTop, pading, margin
 	element.addEventListener('touchstart',() => {
@@ -63,7 +63,7 @@ export const loadMore = (element, callback) => {
         setTop = element.offsetTop;
         paddingBottom = getStyle(element,'paddingBottom');
         marginBottom = getStyle(element,'marginBottom');
-    },{passive: true})
+    },{passive: true})//passive 的意思是“顺从的”，表示它不会对事件的默认行为说 no
 
     //运动过程中保持监听 scrollTop 的值判断是否到达底部
     element.addEventListener('touchmove',() => {
@@ -206,6 +206,7 @@ export const animate = (element, target, duration = 400, mode = 'ease-out', call
 
     let flag = true; //假设所有运动到达终点
     const remberSpeed = {};//记录上一个速度值,在ease-in模式下需要用到
+    // 按照指定的周期执行来执行一段程序
     element.timer = setInterval(() => {
         Object.keys(target).forEach(attr => {
             let iSpeed = 0;  //步长
