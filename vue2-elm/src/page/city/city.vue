@@ -75,6 +75,7 @@
                         this.historytitle = false;
                         this.placelist = res;
                         this.placeNone = res.length? false : true;
+                        console.log('城市搜索：',res);
                     })
                 }
             },

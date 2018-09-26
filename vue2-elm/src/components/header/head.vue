@@ -44,6 +44,7 @@
         },
         methods: {
             ...mapActions([
+                // 将 `this.getUserInfo()` 映射为 `this.$store.dispatch('getUserInfo')`
                 'getUserInfo'
             ]),
         },

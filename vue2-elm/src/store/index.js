@@ -34,7 +34,7 @@ const state = {
 	question: null,//问题详情
 	cartPrice: null, //会员卡价格
 }
-
+//组装模块并导出store 的地方。
 export default new Vuex.Store({
 	state,
 	getters,

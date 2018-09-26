@@ -15,7 +15,8 @@
                 </svg>
             </router-link>  
         </nav>
-        <section id="hot_city_container">
+
+        <!-- <section id="hot_city_container">
             <h4 class="city_title">热门城市</h4>
             <ul class="citylistul clear">
                 <router-link  tag="li" v-for="item in hotcity" :to="'/city/' + item.id" :key="item.id">
@@ -36,7 +37,8 @@
                     </ul>
                 </li>
             </ul>
-        </section>
+        </section> -->
+        
     </div>
 </template>
 
@@ -59,17 +61,19 @@ export default {
         cityGuess().then(res => {
             this.guessCity = res.name;
             this.guessCityid = res.id;
+            console.log('当前城市：',res.name,res.id)
         })
 
         //获取热门城市
         hotcity().then(res => {
             this.hotcity = res;
+            console.log('热门城市：',res)
         })
 
         //获取所有城市
         groupcity().then(res => {
             this.groupcity = res;
-            console.log(res)
+            console.log('所有城市：',res)
         })
     },
 
@@ -105,6 +109,7 @@ export default {
     .head_logo{
         left: 0.4rem;
         font-weight: 400;
+        //@include 是 sass 语法， 定义的混入@mixin 使用 @include 引用
         @include sc(0.7rem, #fff);
         @include wh(2.3rem, 0.7rem);
         @include ct;

@@ -1,5 +1,9 @@
 import App from '../App'
-
+/*执行 npm run build 会打包为一个整体 app.[contenthash].js ,这个文件是非常大,可能几兆或者几十兆,加载会很慢
+// 所以我们需要分模块打包,把我们想要组合在一起的组件打包到一个 chunk块中去,分模块打包需要下面这样使用 
+// webpack的 require.ensure,并且在最后加入一个 chunk名,相同 chunk名字的模块将会打包到一起。
+// webpack中利用require.ensure()实现按需加载
+*/
 const home = r => require.ensure([], () => r(require('../page/home/home')), 'home')
 const city = r => require.ensure([], () => r(require('../page/city/city')), 'city')
 const msite = r => require.ensure([], () => r(require('../page/msite/msite')), 'msite')
@@ -46,12 +50,10 @@ const questionDetail = r => require.ensure([], () => r(require('../page/service/
 const find = r => require.ensure([], () => r(require('../page/find/find')), 'find')
 const download = r => require.ensure([], () => r(require('../page/download/download')), 'download')
 
-
-
-
 export default [{
     path: '/',
     component: App, //顶层路由，对应index.html
+    // 嵌套路由就是路由里面嵌套他的子路由，可以有自己的路由导航和路由容器（router-link、router-view），通过配置children可实现多层嵌套
     children: [ //二级路由。对应App.vue
         //地址为空时跳转home页面
         {

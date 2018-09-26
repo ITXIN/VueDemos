@@ -32,6 +32,20 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 		}
 
 		if (type == 'POST') {
+			/*Object.definedProperty方法可以在一个对象上直接定义一个新的属性、或修改一个对象已经存在的属性，
+			最终返回这个对象。
+				语法
+				Object.defineProperty(obj, prop, descriptor)
+				参数：
+				obj 
+				被定义或修改属性的对象；
+				prop 
+				要定义或修改的属性名称；
+				descriptor 
+				对属性的描述；
+				返回值
+				函数将返回传递给他的obj对象本身。
+*/
 			Object.defineProperty(requestConfig, 'body', {
 				value: JSON.stringify(data)
 			})
@@ -64,7 +78,7 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 			if (type == 'POST') {
 				sendData = JSON.stringify(data);
 			}
-			
+
 			//发送请求
 			requestObj.open(type, url, true);
 			requestObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -77,9 +91,9 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 						if (typeof obj !== 'object') {
 							obj = JSON.parse(obj);
 						}
-						resolve(obj)
+						resolve(obj);
 					} else {
-						reject(requestObj)
+						reject(requestObj);
 					}
 				}
 			}

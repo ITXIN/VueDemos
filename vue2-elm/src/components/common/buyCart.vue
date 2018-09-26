@@ -71,6 +71,7 @@
         props:['foods', 'shopId'],
         methods: {
             ...mapMutations([
+                //将this.ADD_CART() 映射为 this.$store.commit('REDUCE_CART') 更新信息
                 'ADD_CART','REDUCE_CART',
             ]),
             //移出购物车
